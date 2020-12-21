@@ -17,7 +17,7 @@ console.log(getUsersWithEyeColor(users, 'blue')); // [объект Moore Hensley
 
 // task 3
 const getUsersWithGender = (users, gender) => {
-  const result = users.filter((user) => user.gender === gender)
+  const result = users.filter((user) => user.gender === gender).map((user) => user.name)
   return result
 };
 console.log(getUsersWithGender(users, 'male')); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
@@ -64,8 +64,18 @@ console.log(getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma Head', 'Sher
 
 // task9
 const getNamesSortedByFriendsCount = users => {
-  const result = users.
+  const result = users.sort((a, b) => a.friends - b.friends).map((user)=> user.name)
+  return result
 };
-
 console.log(getNamesSortedByFriendsCount(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
+
+// task10
+const getSortedUniqueSkills = (users) => {
+  return users.reduce((arr, user) => {
+      arr.push(...user.skills);
+      return arr;
+    }, []).sort().filter((user, index,arr) => arr.indexOf(user) === index)
+};
+console.log(getSortedUniqueSkills(users));
+// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
